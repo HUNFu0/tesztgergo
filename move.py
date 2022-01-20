@@ -1,3 +1,5 @@
+import random
+
 Hudvar = True
 Heloszoba = False
 Hnappali = False
@@ -53,6 +55,10 @@ for i in range(0,9999,1):
             action = 0
             action = int(input("Kérem adja meg azt a számot ahova menni akar: "))
             print()
+            botladoza = random.randint(1,6)
+            if botladoza == 1:
+                print("Megbotlottál az úton.")
+                print()
             if action == 1:
                 print("Oda mész az ajtóhoz de zárva van.")
                 if Ikulcs == True:
@@ -75,6 +81,10 @@ for i in range(0,9999,1):
             action = 0
             action = int(input("Kérem adja meg azt a számot ahova menni akar: "))
             print()
+            botladoza = random.randint(1,6)
+            if botladoza == 1:
+                print("Megbotlottál az úton.")
+                print()
             if action == 1:
                 print("Úgy döntesz ki mész az udvarra.")
                 Heloszoba = False
@@ -93,6 +103,10 @@ for i in range(0,9999,1):
             action = 0
             action = int(input("Kérem adja meg azt a számot ahova menni akar: "))
             print()
+            botladoza = random.randint(1,6)
+            if botladoza == 1:
+                print("Megbotlottál az úton.")
+                print()
             if action == 1:
                 print("El mentél az elöszobába")
                 Hnappali = False
@@ -116,6 +130,10 @@ for i in range(0,9999,1):
             action = 0
             action = int(input("Kérem adja meg azt a számot ahova menni akar: "))
             print()
+            botladoza = random.randint(1,6)
+            if botladoza == 1:
+                print("Megbotlottál az úton.")
+                print()
             if action == 1:
                 print("Vissza mentél a nappaliba.")
                 Hkonyha = False
@@ -127,6 +145,10 @@ for i in range(0,9999,1):
             action = 0
             action = int(input("Kérem adja meg azt a számot ahova menni akar: "))
             print()
+            botladoza = random.randint(1,6)
+            if botladoza == 1:
+                print("Megbotlottál az úton.")
+                print()
             if action == 1:
                 print("Vissza mentél a Nappaliba.")
                 Hszuloszoba = False
@@ -138,6 +160,10 @@ for i in range(0,9999,1):
             action = 0
             action = int(input("Kérem adja meg azt a számot ahova menni akar: "))
             print()
+            botladoza = random.randint(1,6)
+            if botladoza == 1:
+                print("Megbotlottál az úton.")
+                print()
             if action == 1:
                 print("Vissza mentél a Nappaliba.")
                 Hgyerekszoba = False
