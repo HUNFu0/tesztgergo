@@ -1,15 +1,33 @@
 import random
 
-
-Pmaxhp = int(input("Enter the number of hit points you would like to have: "))
-Pcurhp = Pmaxhp
 Pmaxstat = int(input("Please enter how many stat points you would like to have: "))
 Pcurstat = Pmaxstat
-print("There are 3 categorys: attack, defense, magic.")
+print("There are 4 categorys: hp, attack, defense, magic.")
 statdone = False
 while statdone == False:
     Pstatpic1 = False
     while Pstatpic1 == False:
+        print(Pcurstat,"unspent points")
+        Pmaxhp = int(input("How many points would you like to put into your hp?: "))
+        if Pmaxhp > Pcurstat:
+            print("You dont have that many skill points!")
+        elif Pmaxhp <= 0:
+            print("You cant input negativ numbers or 0!")
+        else:
+            Pcurstat -= Pmaxhp
+            Pstatpic1 = True
+            Php_conversion_math = False
+            while Php_conversion_math == False:
+                Php_conversion = int(input("How much hp should 1 skill point give you? "))
+                if Php_conversion <= 0:
+                    print("You can NOT put 0 or negativ values!")
+                else:
+                    Php_conversion_math = True
+                    Pmaxhp = Pmaxhp * Php_conversion
+                    Pcurhp = Pmaxhp
+
+    Pstatpic2 = False
+    while Pstatpic2 == False:
         print(Pcurstat,"unspent points")
         Pdmg = int(input("How many points would you like to put into attack? "))
         if Pdmg > Pcurstat:
@@ -18,10 +36,10 @@ while statdone == False:
             print("You cant input negativ numbers!")
         else:
             Pcurstat -= Pdmg
-            Pstatpic1 = True
+            Pstatpic2 = True
 
-    Pstatpic2 = False
-    while Pstatpic2 == False:
+    Pstatpic3 = False
+    while Pstatpic3 == False:
         print(Pcurstat,"unspent")
         Pdef = int(input("How many points would you like to put into defense? "))
         if Pdef > Pcurstat:
@@ -31,10 +49,10 @@ while statdone == False:
             print("You cant input negativ numbers!")
         else:
             Pcurstat -= Pdef
-            Pstatpic2 = True 
+            Pstatpic3 = True 
 
-    Pstatpic3 = False
-    while Pstatpic3 == False:
+    Pstatpic4 = False
+    while Pstatpic4 == False:
         print(Pcurstat,"unspent")
         Pmagic = int(input("How many points would you like to put into magic? "))
         if Pmagic > Pcurstat:
@@ -43,7 +61,7 @@ while statdone == False:
             print("You cant input negativ numbers!")
         else:
             Pcurstat -= Pmagic
-            Pstatpic3 = True
+            Pstatpic4 = True
     print("Your stats are:",Pdmg,"attack,",Pdef,"defense,",Pmagic,"magic and you have",Pmaxhp,"HP")
     if Pcurstat != 0:
         print("You still have",Pcurstat,"unspent skill points!")
