@@ -1,5 +1,14 @@
 import random
 
+Tutorial = 2
+while Tutorial < 0 and Tutorial > 1:
+    print("Would you like a tutorial on the games mechanics?")
+    print("(0) No, i do NOT want a tutorial.")
+    print("(1) Yes, i do want a tutorial.")
+    Tutorial = int(input("Type the number of the option you would like to choose. "))
+    if Tutorial < 0 or Tutorial > 1:
+        print("Invalid option was selected.")
+
 Pmaxstat = int(input("Please enter how many stat points you would like to have: "))
 Pcurstat = Pmaxstat
 print("There are 4 categorys: hp, attack, defense, magic.")
@@ -29,13 +38,13 @@ while statdone == False:
     Pstatpic2 = False
     while Pstatpic2 == False:
         print(Pcurstat,"unspent points")
-        Pdmg = int(input("How many points would you like to put into attack? "))
-        if Pdmg > Pcurstat:
+        Pbasedmg = int(input("How many points would you like to put into attack? "))
+        if Pbasedmg > Pcurstat:
             print("You dont have that many skill points!")
-        elif Pdmg < 0:
+        elif Pbasedmg < 0:
             print("You cant input negativ numbers!")
         else:
-            Pcurstat -= Pdmg
+            Pcurstat -= Pbasedmg
             Pstatpic2 = True
 
     Pstatpic3 = False
@@ -62,7 +71,7 @@ while statdone == False:
         else:
             Pcurstat -= Pmagic
             Pstatpic4 = True
-    print("Your stats are:",Pdmg,"attack,",Pdef,"defense,",Pmagic,"magic and you have",Pmaxhp,"HP")
+    print("Your stats are:",Pbasedmg,"attack,",Pdef,"defense,",Pmagic,"magic and you have",Pmaxhp,"HP")
     if Pcurstat != 0:
         print("You still have",Pcurstat,"unspent skill points!")
     print("Are you happy with your stats?")
@@ -72,7 +81,7 @@ while statdone == False:
     if Pstatcreator == 1:
         statdone = True
     else:
-        Pdmg = 0
+        Pbasedmg = 0
         Pdef = 0
         Pmagic = 0
         Pcurstat = Pmaxstat
@@ -81,61 +90,38 @@ print("Done creating a caracter!")
 
 Emaxhp = int(input("Enter the number of hit points your enemy should have: "))
 Ecurhp = Pmaxhp
-Emaxstat = int(input("Please enter how many stat points your enemy should have: "))
-Ecurstat = Emaxstat
-print("There are 3 categorys: attack, defense, magic.")
-Estatdone = False
-while Estatdone == False:
-    Estatpic1 = False
-    while Estatpic1 == False:
-        print(Ecurstat,"unspent points")
-        Edmg = int(input("How many points should your enemy have in attack? "))
-        if Edmg > Ecurstat:
-            print("There arent that many skill points!")
-        elif Edmg < 0:
-            print("You cant input negativ numbers!")
-        else:
-            Ecurstat -= Edmg
-            Estatpic1 = True
-
-    Estatpic2 = False
-    while Estatpic2 == False:
-        print(Ecurstat,"unspent")
-        Edef = int(input("How many points should your enemy have in defense? "))
-        if Edef > Ecurstat:
-            print("There arent that many skill points!")
-        elif Edef < 0:
-            print("You cant input negativ numbers!")
-        else:
-            Ecurstat -= Edef
-            Estatpic2 = True 
-
-    Estatpic3 = False
-    while Estatpic3 == False:
-        print(Ecurstat,"unspent")
-        Emagic = int(input("How many points should your enemy have in magic? "))
-        if Emagic > Ecurstat:
-            print("There arent that many skill points!")
-        elif Emagic < 0:
-            print("You cant input negativ numbers!")
-        else:
-            Ecurstat -= Emagic
-            Estatpic3 = True
-    print("Your enemys stats are:",Edmg,"attack,",Edef,"defense,",Emagic,"magic and your enemy has",Emaxhp,"HP")
-    if Ecurstat != 0:
-        print("You still have",Ecurstat,"unspent skill points!")
-    print("Are you happy with your stats?")
-    print("(1) Yes")
-    print("(2) No")
-    Estatcreator = int(input("Inpuit the number of the choice you want: "))
-    if Estatcreator == 1:
-        Estatdone = True
-    else:
-        Edmg = 0
-        Edef = 0
-        Emagic = 0
-        Ecurstat = Emaxstat
-
+Edmg = int(input("How many points should your enemy have in attack? "))
+Edef = int(input("How many points should your enemy have in defense? "))
+Emagic = int(input("How many points should your enemy have in magic? "))
+print("Your enemys stats are:",Edmg,"attack,",Edef,"defense,",Emagic,"magic and your enemy has",Emaxhp,"HP")
 print("You've made your enemy!")
 
-print(random.randint(0,Pdmg))
+Pflee = False
+Eflee = False
+startturn = False
+Pempowered = 0
+Eempowered = 0
+Eambush = int(input("Please input how strong shoulds the enemy ambush be (the enemys dmg*(this input)//1) (100 = enemy damage, 0 = no bonus dmg(If the calculated dmg is less than 1  this will still deal 1 dmg)) "))
+Pempow_multiply = int(input("Please input how strong shouls your empowered attacks be (your dmg + (your dmg*(this input)//1)) (100 = double dmg, 0 = no bonus dmg(If the multiplyed dmg is less than 1 this will still deal +1 dmg)) "))
+
+
+while Pcurhp > 0 and Ecurhp > 0 and Pflee == False and Eflee == False:
+    if startturn == False:
+        print()
+        startturn2 = random.randint(1,2)
+        if startturn2 == 1:
+            print("The enemy ambushed you! You take slight damage.")
+            if (Edmg*0.5)//1 < 1:
+                Pcurhp -= 1
+                startturn = True
+            else:
+                Pcurhp -= (Edmg*Eambush)//1
+                startturn = True
+        if startturn2 == 2:
+            print("You ambush your enemy! Your next attack is empowered.")
+            Pempowered += 1
+            startturn = True
+    print()
+    print("What would you like to do?")
+    print("(1)  Attack")
+    print("(2)  Block")
